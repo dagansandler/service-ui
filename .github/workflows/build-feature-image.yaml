@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - 'develop'
-      - 'feature-orgs'
+      - 'history-table'
 
 jobs:
   variables-setup:
