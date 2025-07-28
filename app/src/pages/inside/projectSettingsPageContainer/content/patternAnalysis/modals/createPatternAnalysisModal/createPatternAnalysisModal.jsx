@@ -21,7 +21,7 @@ import classNames from 'classnames/bind';
 import { useIntl } from 'react-intl';
 import { COMMON_LOCALE_KEYS } from 'common/constants/localization';
 import { withModal } from 'components/main/modal';
-import { Modal, Toggle, FieldText } from '@reportportal/ui-kit';
+import { Modal, Toggle, FieldText, FieldTextFlex } from '@reportportal/ui-kit';
 import { hideModalAction } from 'controllers/modal';
 import { PATTERN_TYPES, REGEX_PATTERN } from 'common/constants/patternTypes';
 import { commonValidators } from 'common/utils/validation';
@@ -29,7 +29,6 @@ import { formValueSelector, reduxForm } from 'redux-form';
 import { FieldProvider } from 'components/fields';
 import { Dropdown } from 'componentLibrary/dropdown';
 
-import { FieldTextFlex } from 'componentLibrary/fieldTextFlex';
 import { RegExEditor } from 'components/inputs/regExEditor';
 import { FieldErrorHint } from 'components/fields/fieldErrorHint';
 import { FieldElement } from 'pages/inside/projectSettingsPageContainer/content/elements';

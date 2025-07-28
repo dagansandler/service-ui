@@ -37,6 +37,7 @@ import {
   Toggle,
   Modal as ModalLayoutComponent,
   FieldText,
+  FieldTextFlex,
 } from '@reportportal/ui-kit';
 import { GhostButton } from 'components/buttons/ghostButton';
 import { BigButton } from 'components/buttons/bigButton';
@@ -188,7 +189,7 @@ import {
   RuleList as RuleListComponent,
   DraggableRuleList,
 } from 'pages/inside/projectSettingsPageContainer/content/elements';
-import { FieldTextFlex } from 'componentLibrary/fieldTextFlex';
+
 import { EmptyStatePage } from 'pages/inside/projectSettingsPageContainer/content/emptyStatePage';
 import { Dropdown } from 'componentLibrary/dropdown';
 import { FieldNumber } from 'componentLibrary/fieldNumber';

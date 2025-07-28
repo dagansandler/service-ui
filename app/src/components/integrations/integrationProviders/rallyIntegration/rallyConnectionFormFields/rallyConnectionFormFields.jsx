@@ -22,10 +22,10 @@ import { SECRET_FIELDS_KEY } from 'controllers/plugins';
 import { commonValidators } from 'common/utils/validation';
 import { FieldErrorHint } from 'components/fields/fieldErrorHint';
 import { FieldElement } from 'pages/inside/projectSettingsPageContainer/content/elements';
-import { FieldTextFlex } from 'componentLibrary/fieldTextFlex';
+import { FieldTextFlex, FieldText } from '@reportportal/ui-kit';
 import { Dropdown } from 'componentLibrary/dropdown';
 import { COMMON_BTS_MESSAGES } from 'components/integrations/elements/bts';
-import { FieldText } from '@reportportal/ui-kit';
+
 import { DEFAULT_FORM_CONFIG } from '../constants';
 import { messages } from '../messages';
 import styles from './rallyConnectionFormFields.scss';

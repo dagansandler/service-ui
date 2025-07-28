@@ -16,7 +16,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FieldTextFlex } from 'componentLibrary/fieldTextFlex';
+import { FieldTextFlex } from '@reportportal/ui-kit';
 import { DynamicField } from '../dynamicField';
 
 export const MultilineTextField = (props) => {
