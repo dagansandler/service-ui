@@ -16,7 +16,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FieldText } from 'componentLibrary/fieldText';
+import { FieldText } from '@reportportal/ui-kit';
 import { DynamicField } from '../dynamicField';
 
 export class TextField extends Component {

@@ -22,7 +22,7 @@ import CloseIcon from 'common/img/cross-icon-inline.svg';
 import classNames from 'classnames/bind';
 import { injectIntl, defineMessages } from 'react-intl';
 import { GhostButton } from 'components/buttons/ghostButton';
-import { FieldText } from 'componentLibrary/fieldText';
+import { FieldText } from '@reportportal/ui-kit';
 import { FieldElement } from 'pages/inside/projectSettingsPageContainer/content/elements';
 import { FieldErrorHint } from 'components/fields/fieldErrorHint';
 import PlusIcon from 'common/img/plus-button-inline.svg';

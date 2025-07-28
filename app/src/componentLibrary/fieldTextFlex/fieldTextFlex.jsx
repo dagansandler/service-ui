@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './fieldTextFlex.scss';
@@ -41,14 +42,21 @@ export const FieldTextFlex = ({
   label,
   helpText,
   variant,
+  isRequired,
 }) => {
   const resizeHeight = (e) => {
     e.target.style.height = `${HEIGHT}px`;
     e.target.style.height = `${e.target.scrollHeight + BORDER}px`;
   };
+
   return (
     <>
-      {label && <span className={cx('label', variant, { disabled })}>{label}</span>}
+      {label && (
+        <span className={cx('label', variant, { disabled })}>
+          {label}
+          {isRequired && <span className={cx('asterisk')}>*</span>}
+        </span>
+      )}
       <textarea
         ref={refFunction}
         className={cx('text-area', variant, className, {
@@ -94,6 +102,7 @@ FieldTextFlex.propTypes = {
   label: PropTypes.string,
   helpText: PropTypes.string,
   variant: PropTypes.oneOf([LIGHT_VARIANT, DARK_VARIANT]),
+  isRequired: PropTypes.bool,
 };
 
 FieldTextFlex.defaultProps = {
@@ -112,4 +121,5 @@ FieldTextFlex.defaultProps = {
   label: '',
   helpText: '',
   variant: LIGHT_VARIANT,
+  isRequired: false,
 };

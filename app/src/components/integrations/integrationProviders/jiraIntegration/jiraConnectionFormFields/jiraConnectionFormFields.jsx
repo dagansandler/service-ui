@@ -24,7 +24,7 @@ import { SECRET_FIELDS_KEY } from 'controllers/plugins';
 import { FieldErrorHint } from 'components/fields/fieldErrorHint';
 import { FieldElement } from 'pages/inside/projectSettingsPageContainer/content/elements';
 import { Dropdown } from 'componentLibrary/dropdown';
-import { FieldText } from 'componentLibrary/fieldText';
+import { FieldText } from '@reportportal/ui-kit';
 import { COMMON_BTS_MESSAGES } from 'components/integrations/elements/bts';
 import { DEFAULT_FORM_CONFIG } from '../constants';
 import { messages } from '../messages';

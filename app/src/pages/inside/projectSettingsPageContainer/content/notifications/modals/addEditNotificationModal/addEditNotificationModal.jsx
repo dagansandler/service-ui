@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import className from 'classnames/bind';
 import { defineMessages, useIntl } from 'react-intl';
 import { withModal } from 'components/main/modal';
-import { Modal, Checkbox, Toggle } from '@reportportal/ui-kit';
+import { Modal, Checkbox, Toggle, FieldText } from '@reportportal/ui-kit';
 import { FieldProvider } from 'components/fields/fieldProvider';
 import { COMMON_LOCALE_KEYS } from 'common/constants/localization';
 import { FIELD } from 'common/constants/dataAutomation';
@@ -30,7 +30,7 @@ import { FieldErrorHint } from 'components/fields/fieldErrorHint';
 import { URLS } from 'common/urls';
 import { Dropdown } from 'componentLibrary/dropdown';
 import { hideModalAction } from 'controllers/modal';
-import { FieldText } from 'componentLibrary/fieldText';
+
 import { AttributeListFormField } from 'components/containers/AttributeListFormField';
 import { RadioGroup } from 'componentLibrary/radioGroup';
 import { EMAIL } from 'common/constants/pluginNames';

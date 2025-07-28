@@ -36,6 +36,7 @@ import {
   Checkbox,
   Toggle,
   Modal as ModalLayoutComponent,
+  FieldText,
 } from '@reportportal/ui-kit';
 import { GhostButton } from 'components/buttons/ghostButton';
 import { BigButton } from 'components/buttons/bigButton';
@@ -181,7 +182,7 @@ import {
   createGlobalNamedIntegrationsSelector,
 } from 'controllers/plugins/selectors';
 import { loginAction } from 'controllers/auth';
-import { FieldText } from 'componentLibrary/fieldText';
+
 import {
   FieldElement,
   RuleList as RuleListComponent,

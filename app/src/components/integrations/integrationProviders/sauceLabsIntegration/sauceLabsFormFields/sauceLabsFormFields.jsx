@@ -23,7 +23,7 @@ import { SECRET_FIELDS_KEY } from 'controllers/plugins';
 import { FieldErrorHint } from 'components/fields/fieldErrorHint';
 import { Dropdown } from 'componentLibrary/dropdown';
 import { FieldElement } from 'pages/inside/projectSettingsPageContainer/content/elements';
-import { FieldText } from 'componentLibrary/fieldText';
+import { FieldText } from '@reportportal/ui-kit';
 import styles from './sauceLabsFormFields.scss';
 
 const cx = classNames.bind(styles);
