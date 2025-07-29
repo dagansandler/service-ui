@@ -14,23 +14,57 @@
  * limitations under the License.
  */
 
-.meatball-menu {
-  font-family: var(--rp-ui-base-font-family);
-  font-size: 13px;
-  line-height: 20px;
-}
-
 .menu-icon {
-  svg {
-    margin-bottom: 3px;
-  }
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
-.option-link {
-  color: var(--rp-ui-base-almost-black);
-  cursor: pointer;
-  text-decoration: none;
-  outline: none;
-  background: none;
-  border: none;
+.meatball-menu {
+  display: flex;
+  flex-direction: column;
+
+  .option-link {
+    padding: 8px 12px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 12px;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+    }
+  }
+
+  .option-button {
+    padding: 8px 12px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 12px;
+    white-space: nowrap;
+    text-align: left;
+
+    &:hover {
+      background-color: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+    }
+
+    &.danger-option {
+      color: var(--color-text-danger);
+
+      &:hover {
+        background-color: var(--color-bg-danger-hover);
+        color: var(--color-text-danger);
+      }
+    }
+  }
 }

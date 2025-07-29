@@ -14,13 +14,24 @@
  * limitations under the License.
  */
 
-import { takeEvery, all, put, select } from 'redux-saga/effects';
+import { takeEvery, all, put, select, take, call } from 'redux-saga/effects';
+import { createFetchPredicate, fetchDataAction } from 'controllers/fetch';
+import { redirect } from 'redux-first-router';
+import { ORGANIZATIONS_PAGE } from 'controllers/pages';
 import { URLS } from 'common/urls';
-import { showDefaultErrorNotification } from 'controllers/notification';
-import { fetchDataAction } from 'controllers/fetch';
+import { showDefaultErrorNotification, showSuccessNotification } from 'controllers/notification';
+import { NOTIFICATION_TYPES, showNotification } from 'controllers/notification';
+import { hideModalAction } from 'controllers/modal';
+import { fetch } from 'common/utils';
+import {
+  FETCH_ORGANIZATIONS,
+  FETCH_FILTERED_ORGANIZATIONS,
+  DELETE_ORGANIZATION,
+  NAMESPACE,
+} from './constants';
+import { fetchFilteredOrganizationsAction } from './actionCreators';
 import { prepareQueryFilters } from 'components/filterEntities/utils';
 import { querySelector } from './selectors';
-import { FETCH_ORGANIZATIONS, FETCH_FILTERED_ORGANIZATIONS, NAMESPACE } from './constants';
 
 function* fetchOrganizations() {
   try {
@@ -48,10 +59,45 @@ function* fetchFilteredOrganizations() {
   );
 }
 
-function* watchFetchFilteredProjects() {
+function* watchFetchFilteredOrganizations() {
   yield takeEvery(FETCH_FILTERED_ORGANIZATIONS, fetchFilteredOrganizations);
 }
 
+function* deleteOrganization({ payload: { organizationId, organizationName } }) {
+  try {
+    yield call(fetch, URLS.deleteOrganization(organizationId), {
+      method: 'delete',
+    });
+
+    yield put(fetchFilteredOrganizationsAction());
+    yield put(hideModalAction());
+    yield put(
+      showNotification({
+        messageId: 'deleteOrganizationSuccess',
+        type: NOTIFICATION_TYPES.SUCCESS,
+        values: { organizationName },
+      }),
+    );
+  } catch (err) {
+    const error = err.message;
+    yield put(
+      showNotification({
+        messageId: 'deleteError',
+        type: NOTIFICATION_TYPES.ERROR,
+        values: { error },
+      }),
+    );
+  }
+}
+
+function* watchDeleteOrganization() {
+  yield takeEvery(DELETE_ORGANIZATION, deleteOrganization);
+}
+
 export function* organizationsSagas() {
-  yield all([watchFetchOrganizations(), watchFetchFilteredProjects()]);
+  yield all([
+    watchFetchOrganizations(),
+    watchFetchFilteredOrganizations(),
+    watchDeleteOrganization(),
+  ]);
 }

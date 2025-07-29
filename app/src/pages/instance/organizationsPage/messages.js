@@ -102,4 +102,32 @@ export const messages = defineMessages({
     id: 'OrganizationsPage.activity',
     defaultMessage: 'Activity',
   },
+  deleteOrganizationModalTitle: {
+    id: 'OrganizationsPage.deleteOrganizationModalTitle',
+    defaultMessage: 'Delete organization',
+  },
+  deleteOrganizationModalDescription: {
+    id: 'OrganizationsPage.deleteOrganizationModalDescription',
+    defaultMessage: 'Are you sure you want to delete the organization <b>{organizationName}</b>?',
+  },
+  deleteOrganizationModalWarning: {
+    id: 'OrganizationsPage.deleteOrganizationModalWarning',
+    defaultMessage: 'Organization and all its projects and data will be deleted.',
+  },
+  deleteOrganizationConfirmationText: {
+    id: 'OrganizationsPage.deleteOrganizationConfirmationText',
+    defaultMessage: 'To confirm, type <b>{keyword}</b> in the field below:',
+  },
+  deleteOrganizationConfirmationPlaceholder: {
+    id: 'OrganizationsPage.deleteOrganizationConfirmationPlaceholder',
+    defaultMessage: 'Type DELETE to confirm',
+  },
+  deleteOrganizationValidationError: {
+    id: 'OrganizationsPage.deleteOrganizationValidationError',
+    defaultMessage: 'The entered text does not match the required keyword',
+  },
+  deleteOrganizationSuccess: {
+    id: 'OrganizationsPage.deleteOrganizationSuccess',
+    defaultMessage: 'The organization has been deleted successfully',
+  },
 });

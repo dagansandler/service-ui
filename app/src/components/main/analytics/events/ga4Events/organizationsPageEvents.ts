@@ -80,4 +80,16 @@ export const ORGANIZATION_PAGE_EVENTS = {
     type: 'organization_level',
     condition: `${withProject ? 'with' : 'without'}_project`,
   }),
+  deleteOrganizationConfirm: () => ({
+    ...BASIC_EVENT_PARAMETERS,
+    place: 'all_organizations',
+    element_name: 'delete',
+    modal: 'delete_organization',
+  }),
+  deleteOrganizationCancel: () => ({
+    ...BASIC_EVENT_PARAMETERS,
+    place: 'all_organizations',
+    element_name: 'cancel',
+    modal: 'delete_organization',
+  }),
 };

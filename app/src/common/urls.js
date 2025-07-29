@@ -155,6 +155,8 @@ export const URLS = {
   organizationSettings: (organizationId) =>
     `${urlCommonBase}organizations/${organizationId}/settings`,
 
+  deleteOrganization: (organizationId) => `${urlCommonBase}organizations/${organizationId}`,
+
   projectByName: (projectKey) => `${urlBase}project/${projectKey}`,
   project: (ids = []) => `${urlBase}project?ids=${ids.join(',')}`,
   projectNames: () => `${urlBase}project/names`,

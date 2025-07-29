@@ -15,3 +15,4 @@
  */
 
 export { MeatballMenu } from './meatballMenu';
+export { DeleteOrganizationModal } from './deleteOrganizationModal';

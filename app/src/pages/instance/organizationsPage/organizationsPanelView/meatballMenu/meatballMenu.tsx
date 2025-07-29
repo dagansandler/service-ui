@@ -21,9 +21,13 @@ import { useIntl } from 'react-intl';
 import { useTracking } from 'react-tracking';
 import { MeatballMenuIcon, Popover } from '@reportportal/ui-kit';
 import { setActiveOrganizationAction } from 'controllers/organization/actionCreators';
-import { canSeeActivityOption } from 'common/utils/permissions';
+import { deleteOrganizationAction } from 'controllers/instance/organizations/actionCreators';
+import { canSeeActivityOption, canDeleteOrganization } from 'common/utils/permissions';
 import { ORGANIZATION_PAGE_EVENTS } from 'components/main/analytics/events/ga4Events/organizationsPageEvents';
 import { ORGANIZATIONS_ACTIVITY_PAGE, userRolesSelector } from 'controllers/pages';
+import { showModalAction } from 'controllers/modal';
+import { COMMON_LOCALE_KEYS } from 'common/constants/localization';
+import { DeleteOrganizationModal } from './deleteOrganizationModal';
 import { messages } from '../../messages';
 import styles from './meatballMenu.scss';
 
@@ -31,6 +35,8 @@ const cx = classNames.bind(styles) as typeof classNames;
 
 interface Organization {
   slug: string;
+  name: string;
+  id: string;
 }
 
 interface MeatballMenuProps {
@@ -46,6 +52,26 @@ export const MeatballMenu = ({ organization }: MeatballMenuProps) => {
   const handleClick = (elementName: string) => {
     dispatch(setActiveOrganizationAction(organization));
     trackEvent(ORGANIZATION_PAGE_EVENTS.meatballMenu(elementName));
+  };
+
+  const handleDeleteClick = () => {
+    dispatch(setActiveOrganizationAction(organization));
+    trackEvent(ORGANIZATION_PAGE_EVENTS.meatballMenu('delete_menu'));
+
+    const data = {
+      organizationName: organization.name,
+      organizationId: organization.id,
+      onConfirm: () => {
+        dispatch(
+          deleteOrganizationAction({
+            organizationId: organization.id,
+            organizationName: organization.name,
+          }),
+        );
+      },
+    };
+
+    dispatch(showModalAction({ component: <DeleteOrganizationModal data={data} /> }));
   };
 
   return (
@@ -64,6 +90,15 @@ export const MeatballMenu = ({ organization }: MeatballMenuProps) => {
             >
               <span>{formatMessage(messages.activity)}</span>
             </Link>
+          )}
+          {canDeleteOrganization(userRoles) && (
+            <button
+              type="button"
+              className={cx('option-button', 'danger-option')}
+              onClick={handleDeleteClick}
+            >
+              <span>{formatMessage(COMMON_LOCALE_KEYS.DELETE)}</span>
+            </button>
           )}
         </div>
       }

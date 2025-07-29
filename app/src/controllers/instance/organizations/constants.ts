@@ -1,5 +1,5 @@
-/*
- * Copyright 2025 EPAM Systems
+/*!
+ * Copyright 2024 EPAM Systems
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +19,9 @@ import { PAGE_KEY, SIZE_KEY } from 'controllers/pagination';
 export const NAMESPACE = 'organizations';
 
 // TODO: After joining the filter and the search, leave one constant
-export const FETCH_ORGANIZATIONS = 'fetchOrganizations';
-export const FETCH_FILTERED_ORGANIZATIONS = 'fetchFilteredOrganizations';
+export const FETCH_ORGANIZATIONS = 'FETCH_ORGANIZATIONS';
+export const FETCH_FILTERED_ORGANIZATIONS = 'FETCH_FILTERED_ORGANIZATIONS';
+export const DELETE_ORGANIZATION = 'DELETE_ORGANIZATION';
 export const DEFAULT_PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
 export const DEFAULT_LIMITATION = 20;
 export const initialPaginationState = {
