@@ -18,15 +18,16 @@ import { useState } from 'react';
 import classNames from 'classnames/bind';
 import { useIntl } from 'react-intl';
 import { Button, BaseIconButton, SearchIcon, PlusIcon } from '@reportportal/ui-kit';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import isEmpty from 'lodash.isempty';
+
+import { transformedFoldersSelector, tmsLoadingSelector } from 'controllers/tms';
 
 import { ScrollWrapper } from 'components/main/scrollWrapper';
 import { showModalAction } from 'controllers/modal';
 
 import { FolderEmptyState } from '../emptyState/folder';
 import { commonMessages } from '../commonMessages';
-import { FOLDERS } from './mockData';
 import { Folder } from './folder';
 import { CREATE_FOLDER_MODAL_KEY } from './createFolderModal';
 
@@ -42,7 +43,29 @@ export const ExpandedOptions = () => {
   const { formatMessage } = useIntl();
   const dispatch = useDispatch();
 
+  // TMS Redux state
+  const folders = useSelector(transformedFoldersSelector);
+  const tmsLoading = useSelector(tmsLoadingSelector);
+
   const { filteredTestCases, loading, hasTestCases, searchValue, setSearchValue } = useTestCases();
+
+  // Calculate total test cases count
+  const totalTestCases = folders.reduce((total, folder) => {
+    const countFolderTestCases = (f) => {
+      let count = f.testsCount || 0;
+      if (f.folders) {
+        count += f.folders.reduce(
+          (subTotal, subFolder) => subTotal + countFolderTestCases(subFolder),
+          0,
+        );
+      }
+      return count;
+    };
+    return total + countFolderTestCases(folder);
+  }, 0);
+
+  // Note: TMS folders are now fetched via route thunk in routesMap.js
+  // This ensures data is loaded when navigating to the page
 
   const setAllTestCases = () => {
     setActiveFolder(null);
@@ -53,7 +76,7 @@ export const ExpandedOptions = () => {
       showModalAction({
         id: CREATE_FOLDER_MODAL_KEY,
         data: {
-          shouldRenderToggle: !isEmpty(FOLDERS),
+          shouldRenderToggle: !isEmpty(folders),
         },
         component: null,
       }),
@@ -74,7 +97,9 @@ export const ExpandedOptions = () => {
             <span className={cx('sidebar-header__title--text')}>
               {formatMessage(commonMessages.allTestCases)}
             </span>
-            <span className={cx('sidebar-header__title--counter')}>1234</span>
+            <span className={cx('sidebar-header__title--counter')}>
+              {tmsLoading ? '...' : totalTestCases.toLocaleString()}
+            </span>
           </button>
         </div>
         <div className={cx('expanded-options__sidebar-separator')} />
@@ -101,21 +126,27 @@ export const ExpandedOptions = () => {
         <div className={cx('expanded-options__sidebar-folders-wrapper')}>
           <ScrollWrapper className={cx('expanded-options__scroll-wrapper-background')}>
             <div className={cx('expanded-options__sidebar-folders')}>
-              <ul
-                className={cx('folders-tree', 'folders-tree--outer')}
-                role="tree"
-                aria-labelledby="tree_label"
-              >
-                {FOLDERS.map((folder) => (
-                  <Folder
-                    folder={folder}
-                    key={folder.name}
-                    activeFolder={activeFolder}
-                    setActiveFolder={setActiveFolder}
-                    setIsEmptyFolder={setIsEmptyFolder}
-                  />
-                ))}
-              </ul>
+              {tmsLoading ? (
+                <div className={cx('folders-loading')}>
+                  <div className={cx('folders-loading__text')}>Loading folders...</div>
+                </div>
+              ) : (
+                <ul
+                  className={cx('folders-tree', 'folders-tree--outer')}
+                  role="tree"
+                  aria-labelledby="tree_label"
+                >
+                  {folders.map((folder) => (
+                    <Folder
+                      folder={folder}
+                      key={folder.id || folder.name}
+                      activeFolder={activeFolder}
+                      setActiveFolder={setActiveFolder}
+                      setIsEmptyFolder={setIsEmptyFolder}
+                    />
+                  ))}
+                </ul>
+              )}
             </div>
           </ScrollWrapper>
         </div>
@@ -129,7 +160,7 @@ export const ExpandedOptions = () => {
               testCases={filteredTestCases}
               searchValue={searchValue}
               setSearchValue={setSearchValue}
-              loading={loading}
+              loading={loading || tmsLoading}
             />
           )}
         </div>

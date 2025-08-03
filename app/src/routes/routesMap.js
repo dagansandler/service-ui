@@ -99,6 +99,7 @@ import { fetchLogPageData } from 'controllers/log';
 import { fetchHistoryPageInfoAction } from 'controllers/itemsHistory';
 import { setSessionItem, updateStorageItem } from 'common/utils/storageUtils';
 import { fetchClustersAction } from 'controllers/uniqueErrors';
+import { fetchTmsFoldersAction } from 'controllers/tms';
 import {
   API_KEYS_ROUTE,
   CONFIG_EXAMPLES_ROUTE,
@@ -347,8 +348,12 @@ const routesMap = {
   [PLUGIN_UI_EXTENSION_ADMIN_PAGE]: '/plugin/:pluginPage/:pluginRoute*',
   [PROJECT_PLUGIN_PAGE]:
     '/organizations/:organizationSlug/projects/:projectSlug/plugin/:pluginPage/:pluginRoute*',
-  [TEST_CASE_LIBRARY_PAGE]:
-    '/organizations/:organizationSlug/projects/:projectSlug/testCaseLibrary',
+  [TEST_CASE_LIBRARY_PAGE]: {
+    path: '/organizations/:organizationSlug/projects/:projectSlug/testCaseLibrary',
+    thunk: (dispatch) => {
+      dispatch(fetchTmsFoldersAction());
+    },
+  },
   [TEST_CASE_DETAILS_PAGE]:
     '/organizations/:organizationSlug/projects/:projectSlug/testCaseLibrary/:testCaseSlug',
   [PRODUCT_VERSIONS_PAGE]: redirectRoute(

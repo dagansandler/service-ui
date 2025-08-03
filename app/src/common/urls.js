@@ -345,4 +345,6 @@ export const URLS = {
     `${urlBase}${projectKey}/launch/cluster/${launchId}${getQueryParams(query)}`,
   onboarding: (page = 'GENERAL') => `${urlBase}onboarding?page=${page}`,
   instanceSettings: () => `${urlBase}settings`,
+
+  tmsFolders: (projectKey) => `${urlBase}project/${projectKey}/tms/folder`.replace('v1/', '/'),
 };

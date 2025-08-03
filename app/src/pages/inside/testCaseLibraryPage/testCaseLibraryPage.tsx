@@ -17,7 +17,7 @@
 import { useIntl } from 'react-intl';
 import classNames from 'classnames/bind';
 import Parser from 'html-react-parser';
-import { BreadcrumbsTreeIcon, Button, Toggle } from '@reportportal/ui-kit';
+import { BreadcrumbsTreeIcon, Button } from '@reportportal/ui-kit';
 
 import { ScrollWrapper } from 'components/main/scrollWrapper';
 import { SettingsLayout } from 'layouts/settingsLayout';
@@ -25,12 +25,12 @@ import ImportIcon from 'common/img/import-thin-inline.svg';
 import { COMMON_LOCALE_KEYS } from 'common/constants/localization';
 
 import { Breadcrumbs } from 'componentLibrary/breadcrumbs';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { projectNameSelector } from 'controllers/project';
 import { PROJECT_DASHBOARD_PAGE, urlOrganizationAndProjectSelector } from 'controllers/pages';
-import { MainPageEmptyState } from './emptyState/mainPage';
+import { tmsFoldersSelector } from 'controllers/tms';
 import { ExpandedOptions } from './expandedOptions';
+import { MainPageEmptyState } from './emptyState/mainPage';
 import { commonMessages } from './commonMessages';
 
 import styles from './testCaseLibraryPage.scss';
@@ -38,15 +38,12 @@ import styles from './testCaseLibraryPage.scss';
 const cx = classNames.bind(styles);
 
 export const TestCaseLibraryPage = () => {
-  const [isEmptyState, setEmptyState] = useState(true);
   const { formatMessage } = useIntl();
   const projectName = useSelector(projectNameSelector);
   const { organizationSlug, projectSlug } = useSelector(urlOrganizationAndProjectSelector);
   const projectLink = { type: PROJECT_DASHBOARD_PAGE, payload: { organizationSlug, projectSlug } };
-  // Temporary toggle for BA and designer review
-  const toggleEmptyState = () => {
-    setEmptyState((prevState) => !prevState);
-  };
+  const folders = useSelector(tmsFoldersSelector);
+  const hasFolders = folders && folders.length > 0;
 
   const breadcrumbDescriptors = [{ id: 'project', title: projectName, link: projectLink }];
 
@@ -61,37 +58,28 @@ export const TestCaseLibraryPage = () => {
             </div>
             <div className={cx('test-case-library-page__title')}>
               {formatMessage(commonMessages.testCaseLibraryHeader)}
-              <Toggle
-                className={cx('test-case-library-page__toggle')}
-                value={isEmptyState}
-                data-automation-id=""
-                onChange={toggleEmptyState}
-              >
-                toggle content
-              </Toggle>
             </div>
-            {isEmptyState || (
-              <div className={cx('test-case-library-page__actions')}>
-                <Button
-                  variant="text"
-                  icon={Parser(ImportIcon)}
-                  data-automation-id="importTestCase"
-                  adjustWidthOn="content"
-                >
-                  {formatMessage(COMMON_LOCALE_KEYS.IMPORT)}
-                </Button>
-                <Button variant="ghost" data-automation-id="createTestCase">
-                  {formatMessage(commonMessages.createTestCase)}
-                </Button>
-              </div>
-            )}
+            <div className={cx('test-case-library-page__actions')}>
+              <Button
+                variant="text"
+                icon={Parser(ImportIcon)}
+                data-automation-id="importTestCase"
+                adjustWidthOn="content"
+              >
+                {formatMessage(COMMON_LOCALE_KEYS.IMPORT)}
+              </Button>
+              <Button variant="ghost" data-automation-id="createTestCase">
+                {formatMessage(commonMessages.createTestCase)}
+              </Button>
+            </div>
           </div>
           <div
-            className={cx('test-case-library-page__content', {
-              'test-case-library-page__content--no-padding': !isEmptyState,
-            })}
+            className={cx(
+              'test-case-library-page__content',
+              'test-case-library-page__content--no-padding',
+            )}
           >
-            {isEmptyState ? <MainPageEmptyState /> : <ExpandedOptions />}
+            {hasFolders ? <ExpandedOptions /> : <MainPageEmptyState />}
           </div>
         </div>
       </ScrollWrapper>
