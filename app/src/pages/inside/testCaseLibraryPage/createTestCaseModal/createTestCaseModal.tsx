@@ -48,6 +48,8 @@ export interface CreateTestCaseFormData {
   manualScenarioType: 'STEPS' | 'TEXT';
   precondition?: string;
   steps?: TestStep[];
+  instructions?: string;
+  expectedResult?: string;
   tags?: string[];
 }
 

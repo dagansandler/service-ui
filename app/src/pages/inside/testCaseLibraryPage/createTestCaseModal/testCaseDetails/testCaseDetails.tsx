@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
+import { connect } from 'react-redux';
+import { formValueSelector } from 'redux-form';
 import classNames from 'classnames/bind';
 import isNumber from 'lodash.isnumber';
 import { FieldText } from '@reportportal/ui-kit';
@@ -10,6 +12,7 @@ import { Template } from './template';
 import { AttachmentArea } from '../attachmentArea';
 import { Precondition } from './precondition';
 import { Steps } from './steps';
+import { TextTemplate } from './textTemplate';
 
 import styles from './testCaseDetails.scss';
 
@@ -42,9 +45,14 @@ const createEmptyStep = (): StepData => ({
 
 interface TestCaseDetailsProps {
   className?: string;
+  manualScenarioType?: string;
 }
 
-export const TestCaseDetails = ({ className }: TestCaseDetailsProps) => {
+const selector = formValueSelector('create-test-case-modal-form');
+
+export const TestCaseDetails = connect((state) => ({
+  manualScenarioType: selector(state, 'manualScenarioType'),
+}))(({ className, manualScenarioType }: TestCaseDetailsProps) => {
   const [steps, setSteps] = useState<StepData[]>([createEmptyStep()]);
   const { formatMessage } = useIntl();
 
@@ -82,6 +90,8 @@ export const TestCaseDetails = ({ className }: TestCaseDetailsProps) => {
     });
   };
 
+  const isTextTemplate = manualScenarioType === 'TEXT';
+
   return (
     <div className={cx('test-case-details', className)}>
       <Template />
@@ -90,17 +100,26 @@ export const TestCaseDetails = ({ className }: TestCaseDetailsProps) => {
           <FieldText label={formatMessage(messages.requirementsLink)} defaultWidth={false} />
         </FieldErrorHint>
       </FieldProvider>
-      <AttachmentArea isNumberable={false}>
-        <Precondition />
-      </AttachmentArea>
-      <FieldProvider name="steps">
-        <Steps
-          steps={steps}
-          onAddStep={handleAddStep}
-          onRemoveStep={handleRemoveStep}
-          onMoveStep={handleMoveStep}
-        />
-      </FieldProvider>
+      {isTextTemplate ? (
+        <>
+          <Precondition />
+          <TextTemplate />
+        </>
+      ) : (
+        <>
+          <AttachmentArea isNumerable={false}>
+            <Precondition />
+          </AttachmentArea>
+          <FieldProvider name="steps">
+            <Steps
+              steps={steps}
+              onAddStep={handleAddStep}
+              onRemoveStep={handleRemoveStep}
+              onMoveStep={handleMoveStep}
+            />
+          </FieldProvider>
+        </>
+      )}
     </div>
   );
-};
+});

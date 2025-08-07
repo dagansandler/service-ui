@@ -55,7 +55,7 @@ interface AttachmentFile {
 interface AttachmentAreaProps {
   isDraggable?: boolean;
   index?: number;
-  isNumberable?: boolean;
+  isNumerable?: boolean;
   isDragAndDropIconVisible?: boolean;
   isAttachmentBlockVisible?: boolean;
   maxFileSize?: number;
@@ -69,7 +69,7 @@ interface AttachmentAreaProps {
 export const AttachmentArea = ({
   isDraggable = false,
   index,
-  isNumberable = true,
+  isNumerable = true,
   children,
   isDragAndDropIconVisible = true,
   isAttachmentBlockVisible = true,
@@ -212,7 +212,7 @@ export const AttachmentArea = ({
 
   return (
     <div className={cx('attachment-area')}>
-      {isNumberable && (
+      {isNumerable && (
         <div className={cx('attachment-area__number')}>
           <div className={cx('attachment-area__drag')}>
             {areaNumber}
