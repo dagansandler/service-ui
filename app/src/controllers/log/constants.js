@@ -56,8 +56,6 @@ export const SET_ACTIVE_TAB_ID = 'SET_ACTIVE_TAB_ID';
 export const FETCH_HISTORY_ITEMS_WITH_LOADING = 'ON_UPDATE_ITEM_STATUS';
 export const FETCH_ERROR_LOGS = 'fetchErrorLogs';
 export const FETCH_ERROR_LOG = 'fetchErrorLog';
-export const SET_LOG_VIEW_MODE = 'SET_LOG_VIEW_MODE';
-export const SET_LOG_VIEW_MODE_OVERRIDE = 'SET_LOG_VIEW_MODE_OVERRIDE';
 
 export const LOG_LEVELS = [
   {

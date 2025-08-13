@@ -381,6 +381,18 @@ function* fetchLogPageData({ meta = {} }) {
     yield all([
       put(fetchTestItemsAction({ offset })),
       put(fetchLogPageStackTrace(logItem)),
+      put(fetchFirstAttachmentsAction()),
+      put(fetchErrorLogs(logItem)),
+      call(fetchLogs),
+    ]);
+    return;
+  }
+  if (isPathNameChanged) {
+    yield call(fetchWholePage);
+    logItem = yield select(activeLogSelector);
+    yield put(fetchErrorLogs(logItem));
+  } else {
+    const logViewMode = yield select(logViewModeSelector);
     if (logViewMode === DETAILED_LOG_VIEW) {
       yield call(fetchHistoryItemData);
       yield put(fetchErrorLogs(logItem));

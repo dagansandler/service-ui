@@ -104,4 +104,3 @@ export const setActiveTabIdAction = (activeTabId) => ({
 export const fetchHistoryItemsWithLoadingAction = () => ({
   type: FETCH_HISTORY_ITEMS_WITH_LOADING,
 });
-
