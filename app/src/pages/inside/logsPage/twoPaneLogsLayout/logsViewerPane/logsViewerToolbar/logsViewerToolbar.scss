@@ -1,0 +1,140 @@
+/*
+ * Copyright 2019 EPAM Systems
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.logs-viewer-toolbar {
+  padding: 16px;
+  border-bottom: 1px solid #e9ecef;
+  background-color: #f8f9fa;
+  flex-shrink: 0;
+}
+
+.toolbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.log-count {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.step-info {
+  margin-bottom: 12px;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.step-name {
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #212529;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.step-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.duration {
+  font-family: monospace;
+}
+
+.log-level {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  
+  &.level-error {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  &.level-warn {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  
+  &.level-info {
+    background-color: #17a2b8;
+    color: white;
+  }
+  
+  &.level-debug {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  &.level-trace {
+    background-color: #e9ecef;
+    color: #495057;
+  }
+}
+
+.filters-section {
+  // Filters section styling
+}
+
+.filter-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.search-filter {
+  flex: 1;
+}
+
+.level-filter {
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+}
+
+.level-filter-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 8px;
+  white-space: nowrap;
+}

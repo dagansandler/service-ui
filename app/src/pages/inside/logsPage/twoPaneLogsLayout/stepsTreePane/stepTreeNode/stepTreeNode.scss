@@ -1,0 +1,198 @@
+/*
+ * Copyright 2019 EPAM Systems
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.step-tree-node {
+  user-select: none;
+}
+
+.node-content {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 1px 4px;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  
+  &:hover {
+    background-color: #f8f9fa;
+  }
+  
+  &.selected {
+    background-color: #007bff;
+    color: white;
+
+    .node-meta {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  &.root {
+    font-weight: 600;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 0 0 4px 0;
+
+    &:hover {
+      background-color: #eeeeee;
+    }
+
+    &.selected {
+      background-color: #e8f5e8;
+      color: #2e7d32;
+      border-left: 3px solid #4caf50;
+    }
+  }
+
+  &.dimmed {
+    opacity: 0.4;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  // Status-based styling
+  &.status-failed {
+    border-left: 3px solid #dc3545;
+  }
+  
+  &.status-passed {
+    border-left: 3px solid #28a745;
+  }
+  
+  &.status-skipped {
+    border-left: 3px solid #ffc107;
+  }
+  
+  &.status-in_progress {
+    border-left: 3px solid #17a2b8;
+  }
+}
+
+.expand-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  margin-right: 6px;
+  font-size: 10px;
+  color: #6c757d;
+  transition: transform 0.2s ease;
+  
+  &.expanded {
+    transform: rotate(90deg);
+  }
+  
+  &:hover {
+    color: #007bff;
+  }
+}
+
+.status-icon {
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.node-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.node-name {
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+.node-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+  font-size: 11px;
+  color: #6c757d;
+}
+
+.duration {
+  font-family: monospace;
+}
+
+.log-level {
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  
+  &.level-error {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  &.level-warn {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  
+  &.level-info {
+    background-color: #17a2b8;
+    color: white;
+  }
+  
+  &.level-debug {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  &.level-trace {
+    background-color: #e9ecef;
+    color: #495057;
+  }
+}
+
+.children-count {
+  font-weight: 600;
+}
+
+.children {
+  // Children are rendered with increased indentation via paddingLeft
+}
+
+.search-highlight {
+  background-color: #ffeb3b;
+  color: #333;
+  padding: 1px 2px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+.match-indicator {
+  background-color: #ff9800;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 8px;
+  display: inline-block;
+  min-width: 16px;
+  text-align: center;
+  cursor: help;
+}

@@ -76,6 +76,7 @@ import {
   FETCH_LOG_PAGE_STACK_TRACE,
   STACK_TRACE_NAMESPACE,
   DETAILED_LOG_VIEW,
+  LAUNCH_LOG_VIEW,
   HISTORY_LINE_TABLE_MODE,
   SET_INCLUDE_ALL_LAUNCHES,
   FETCH_HISTORY_LINE_ITEMS,
@@ -378,11 +379,12 @@ function* fetchLogPageData({ meta = {} }) {
   yield put({ type: CLEAR_NESTED_STEPS });
   if (meta.refresh) {
     const offset = yield select(logPageOffsetSelector);
+    const logViewMode = yield select(logViewModeSelector);
     yield all([
       put(fetchTestItemsAction({ offset })),
       put(fetchLogPageStackTrace(logItem)),
       put(fetchFirstAttachmentsAction()),
-      put(fetchErrorLogs(logItem)),
+      ...(logItem && logViewMode === DETAILED_LOG_VIEW ? [put(fetchErrorLogs(logItem))] : []),
       call(fetchLogs),
     ]);
     return;
@@ -390,7 +392,10 @@ function* fetchLogPageData({ meta = {} }) {
   if (isPathNameChanged) {
     yield call(fetchWholePage);
     logItem = yield select(activeLogSelector);
-    yield put(fetchErrorLogs(logItem));
+    const logViewMode = yield select(logViewModeSelector);
+    if (logItem && logViewMode === DETAILED_LOG_VIEW) {
+      yield put(fetchErrorLogs(logItem));
+    }
   } else {
     const logViewMode = yield select(logViewModeSelector);
     if (logViewMode === DETAILED_LOG_VIEW) {

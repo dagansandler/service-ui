@@ -34,6 +34,9 @@ import {
   SET_SHOULD_SHOW_LOAD_MORE,
   SET_ACTIVE_TAB_ID,
   ERROR_LOGS_NAMESPACE,
+  SET_LOG_VIEW_MODE,
+  SET_LOG_VIEW_MODE_OVERRIDE,
+  DETAILED_LOG_VIEW,
 } from './constants';
 import { attachmentsReducer } from './attachments';
 import { sauceLabsReducer } from './sauceLabs';
@@ -111,10 +114,21 @@ const activeTabIdReducer = (state = 'logs', { type = '', payload = {} }) => {
   }
 };
 
+const logViewModeReducer = (state = DETAILED_LOG_VIEW, { type = '', payload = {} }) => {
+  switch (type) {
+    case SET_LOG_VIEW_MODE:
+    case SET_LOG_VIEW_MODE_OVERRIDE:
+      return payload;
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   activeTabId: activeTabIdReducer,
   shouldShowLoadMore: shouldShowLoadMoreReducer,
   includeAllLaunches: includeAllLaunchesReducer,
+  logViewMode: logViewModeReducer,
   logItems: fetchReducer(LOG_ITEMS_NAMESPACE, { contentPath: 'content' }),
   pagination: paginationReducer(LOG_ITEMS_NAMESPACE),
   loading: loadingReducer(LOG_ITEMS_NAMESPACE),

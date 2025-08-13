@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2019 EPAM Systems
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,30 +14,16 @@
  * limitations under the License.
  */
 
-.log-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-}
+/**
+ * Configuration utilities for logs view features
+ */
 
-.action-buttons {
-  display: flex;
-  align-items: center;
-}
-
-.action-button {
-  padding-left: 10px;
-  display: flex;
-}
-
-.left-arrow-button {
-  margin-right: -1px;
-}
-
-.history-line-mode {
-  white-space: nowrap;
-}
-
-
+/**
+ * Feature flag to control whether to use the new two-pane logs layout
+ * instead of the traditional grid view.
+ * 
+ * @returns {boolean} true if two-pane layout should be used, false for traditional grid
+ */
+export const shouldUseTwoPaneLogs = () => {
+  return process.env.REACT_APP_USE_TWO_PANE_LOGS_VIEW === 'true';
+};

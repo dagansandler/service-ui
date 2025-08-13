@@ -1,0 +1,273 @@
+/*
+ * Copyright 2019 EPAM Systems
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.log-entry {
+  border-bottom: 1px solid #f1f3f4;
+  padding: 12px 16px;
+  
+  &:hover {
+    background-color: #f8f9fa;
+  }
+  
+  // Level-based styling
+  &.level-error {
+    border-left: 4px solid #dc3545;
+    background-color: #fff5f5;
+  }
+  
+  &.level-warn {
+    border-left: 4px solid #ffc107;
+    background-color: #fffbf0;
+  }
+  
+  &.level-info {
+    border-left: 4px solid #17a2b8;
+  }
+  
+  &.level-debug {
+    border-left: 4px solid #6c757d;
+  }
+  
+  &.level-trace {
+    border-left: 4px solid #e9ecef;
+  }
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.log-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.log-index {
+  font-size: 11px;
+  color: #6c757d;
+  font-family: monospace;
+  min-width: 30px;
+}
+
+.log-level {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  
+  &.level-error {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  &.level-warn {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  
+  &.level-info {
+    background-color: #17a2b8;
+    color: white;
+  }
+  
+  &.level-debug {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  &.level-trace {
+    background-color: #e9ecef;
+    color: #495057;
+  }
+}
+
+.log-time {
+  font-size: 11px;
+  color: #6c757d;
+  font-family: monospace;
+}
+
+.attachment-indicator {
+  font-size: 14px;
+  color: #007bff;
+}
+
+.log-content {
+  // Log content styling
+}
+
+.log-message {
+  margin-bottom: 8px;
+}
+
+.message-text {
+  margin: 0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #212529;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.log-attachment {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e9ecef;
+}
+
+// Nested test step styling
+.test-step-entry {
+  background-color: #f8f9fa;
+  border-left: 4px solid #007bff;
+  display: flex;
+  gap: 12px;
+
+  &:hover {
+    background-color: #e9ecef;
+  }
+}
+
+.entry-index {
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.nested-test-step {
+  flex: 1;
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.step-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.step-name {
+  font-weight: 600;
+  color: #212529;
+  font-size: 14px;
+}
+
+.step-status {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  align-self: flex-start;
+
+  &.status-passed {
+    background-color: #28a745;
+    color: white;
+  }
+
+  &.status-failed {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  &.status-skipped {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  &.status-interrupted {
+    background-color: #ffc107;
+    color: #212529;
+  }
+}
+
+.step-type {
+  font-size: 11px;
+  color: #6c757d;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.step-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.jump-to-tree-btn {
+  background: #007bff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 22px;
+  font-weight: bold;
+
+  &:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+  }
+}
+
+.step-time {
+  font-size: 11px;
+  color: #6c757d;
+  font-family: monospace;
+}
+
+.step-duration {
+  font-size: 11px;
+  color: #6c757d;
+  font-family: monospace;
+}
+
+.step-description {
+  font-size: 12px;
+  color: #495057;
+  line-height: 1.4;
+  margin-top: 4px;
+}

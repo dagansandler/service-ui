@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2019 EPAM Systems
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,30 +14,4 @@
  * limitations under the License.
  */
 
-.log-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-}
-
-.action-buttons {
-  display: flex;
-  align-items: center;
-}
-
-.action-button {
-  padding-left: 10px;
-  display: flex;
-}
-
-.left-arrow-button {
-  margin-right: -1px;
-}
-
-.history-line-mode {
-  white-space: nowrap;
-}
-
-
+export { LogsViewerToolbar, shouldShowLogLevel } from './logsViewerToolbar';

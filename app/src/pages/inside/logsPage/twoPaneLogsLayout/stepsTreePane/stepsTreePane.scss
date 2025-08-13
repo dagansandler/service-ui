@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2019 EPAM Systems
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,30 +14,49 @@
  * limitations under the License.
  */
 
-.log-toolbar {
+.steps-tree-pane {
   display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 15px;
-  margin-bottom: 10px;
+  flex: 1;
+  padding: 40px;
 }
 
-.action-buttons {
+.tree-container {
+  flex: 1;
+  overflow: hidden;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
-.action-button {
-  padding-left: 10px;
-  display: flex;
+.tree-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 0;
+  
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+    
+    &:hover {
+      background: #a8a8a8;
+    }
+  }
 }
-
-.left-arrow-button {
-  margin-right: -1px;
-}
-
-.history-line-mode {
-  white-space: nowrap;
-}
-
-

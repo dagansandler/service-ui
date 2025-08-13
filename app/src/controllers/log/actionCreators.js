@@ -29,6 +29,8 @@ import {
   FETCH_HISTORY_ITEMS_WITH_LOADING,
   FETCH_ERROR_LOGS,
   FETCH_ERROR_LOG,
+  SET_LOG_VIEW_MODE,
+  SET_LOG_VIEW_MODE_OVERRIDE,
 } from './constants';
 
 export const fetchLogPageData = () => ({
@@ -103,4 +105,14 @@ export const setActiveTabIdAction = (activeTabId) => ({
 
 export const fetchHistoryItemsWithLoadingAction = () => ({
   type: FETCH_HISTORY_ITEMS_WITH_LOADING,
+});
+
+export const setLogViewModeAction = (viewMode) => ({
+  type: SET_LOG_VIEW_MODE,
+  payload: viewMode,
+});
+
+export const setLogViewModeOverrideAction = (viewMode) => ({
+  type: SET_LOG_VIEW_MODE_OVERRIDE,
+  payload: viewMode,
 });

@@ -48,6 +48,8 @@ import { Attachments } from './attachments';
 import { getActionMessage } from '../utils/getActionMessage';
 import styles from './logItemInfoTabs.scss';
 import { LogsGridWrapper } from '../../logsGridWrapper';
+import { TwoPaneLogsLayout } from '../../twoPaneLogsLayout';
+import { shouldUseTwoPaneLogs } from 'common/utils/logsViewConfig';
 
 const cx = classNames.bind(styles);
 
@@ -220,7 +222,7 @@ export class LogItemInfoTabs extends Component {
         icon: LogIcon,
         stroked: true,
         eventInfo: LOG_PAGE_EVENTS.LOGS_TAB,
-        component: LogsGridWrapper,
+        component: shouldUseTwoPaneLogs() ? TwoPaneLogsLayout : LogsGridWrapper,
         componentProps: {
           logItem,
           isSauceLabsIntegrationView: this.props.isSauceLabsIntegrationView,

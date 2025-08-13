@@ -16,6 +16,7 @@
 
 const path = require('path');
 const dotenv = require('dotenv');
+const webpack = require('webpack');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
@@ -71,6 +72,9 @@ module.exports = () => {
       runtimeChunk: 'single',
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env.REACT_APP_USE_TWO_PANE_LOGS_VIEW': JSON.stringify(process.env.REACT_APP_USE_TWO_PANE_LOGS_VIEW),
+      }),
       new CircularDependencyPlugin({
         exclude: /a\.js|node_modules|gridBody/,
         failOnError: false,
@@ -87,6 +91,12 @@ module.exports = () => {
       historyApiFallback: true,
       host: '0.0.0.0',
       port: 3000,
+      client: {
+        overlay: {
+          errors: true,
+          warnings: false,
+        },
+      },
       proxy: [
         {
           context: ['/composite', '/api/', '/uat/'],

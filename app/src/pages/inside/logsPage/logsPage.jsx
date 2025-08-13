@@ -35,6 +35,7 @@ import { LogToolbar } from './logToolbar';
 import { HistoryLine } from './historyLine';
 import { LogItemInfo } from './logItemInfo';
 import { LogsGridWrapper } from './logsGridWrapper';
+import { TwoPaneLogsLayout } from './twoPaneLogsLayout';
 
 @connect(
   (state) => ({
