@@ -30,8 +30,6 @@ export {
   updateHistoryItemLaunchAttributesAction,
   setActiveTabIdAction,
   fetchHistoryItemsWithLoadingAction,
-  setLogViewModeAction,
-  setLogViewModeOverrideAction,
 } from './actionCreators';
 export { logReducer } from './reducer';
 export {
@@ -91,6 +89,5 @@ export {
   includeAllLaunchesSelector,
   shouldShowLoadMoreSelector,
   activeTabIdSelector,
-  logViewModeOverrideSelector,
 } from './selectors';
 export { getLogLevel, setLogLevel, getLogViewMode, setLogViewMode } from './storageUtils';

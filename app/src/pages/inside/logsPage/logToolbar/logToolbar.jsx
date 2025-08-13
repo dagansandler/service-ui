@@ -48,7 +48,6 @@ import { ParentInfo } from 'pages/inside/common/infoLine/parentInfo';
 import { stepPaginationSelector } from 'controllers/step';
 import { InputCheckbox } from 'components/inputs/inputCheckbox';
 import { SCREEN_XS_MAX } from 'common/constants/screenSizeVariables';
-
 import styles from './logToolbar.scss';
 
 const cx = classNames.bind(styles);
@@ -180,7 +179,6 @@ export class LogToolbar extends Component {
           breadcrumbEventInfo={LOG_PAGE_EVENTS.CLICK_ITEM_NAME_BREADCRUMB}
           allEventClick={LOG_PAGE_EVENTS.CLICK_ALL_LABEL_BREADCRUMB}
         />
-
         <div className={cx('action-buttons')}>
           {logViewMode === DETAILED_LOG_VIEW ? (
             <>
